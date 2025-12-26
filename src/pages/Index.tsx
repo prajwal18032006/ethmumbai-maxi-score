@@ -1,12 +1,104 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import IntroAnimation from "@/components/IntroAnimation";
+import HeroSection from "@/components/HeroSection";
+import CheckingAnimation from "@/components/CheckingAnimation";
+import ResultCard from "@/components/ResultCard";
+import Leaderboard from "@/components/Leaderboard";
+import Footer from "@/components/Footer";
+
+type AppState = "intro" | "home" | "checking" | "result";
+
+const ranks = [
+  { min: 0, max: 20, rank: "Tourist", badge: "🧳" },
+  { min: 21, max: 50, rank: "Builder", badge: "🛠️" },
+  { min: 51, max: 75, rank: "OG", badge: "🔥" },
+  { min: 76, max: 90, rank: "Ultra Maxi", badge: "🚀" },
+  { min: 91, max: 100, rank: "Legend", badge: "👑" },
+];
+
+const getRankData = (score: number) => {
+  return ranks.find((r) => score >= r.min && score <= r.max) || ranks[0];
+};
 
 const Index = () => {
+  const [appState, setAppState] = useState<AppState>("intro");
+  const [resultData, setResultData] = useState<{
+    username: string;
+    score: number;
+    rank: string;
+    badge: string;
+    tweetCount: number;
+  } | null>(null);
+
+  const handleIntroComplete = useCallback(() => {
+    setAppState("home");
+  }, []);
+
+  const handleCheck = useCallback(() => {
+    setAppState("checking");
+
+    // Simulate API call
+    setTimeout(() => {
+      const score = Math.floor(Math.random() * 60) + 40; // 40-100 range for demo
+      const rankData = getRankData(score);
+      
+      setResultData({
+        username: "demo_user",
+        score,
+        rank: rankData.rank,
+        badge: rankData.badge,
+        tweetCount: Math.floor(Math.random() * 500) + 50,
+      });
+      setAppState("result");
+    }, 2000);
+  }, []);
+
+  const handleReset = useCallback(() => {
+    setResultData(null);
+    setAppState("home");
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      {/* Intro Animation */}
+      <AnimatePresence>
+        {appState === "intro" && (
+          <IntroAnimation onComplete={handleIntroComplete} />
+        )}
+      </AnimatePresence>
+
+      {/* Checking Animation */}
+      <AnimatePresence>
+        {appState === "checking" && <CheckingAnimation />}
+      </AnimatePresence>
+
+      {/* Main Content */}
+      <AnimatePresence mode="wait">
+        {appState !== "intro" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {appState === "home" && <HeroSection onCheckClick={handleCheck} />}
+
+            {appState === "result" && resultData && (
+              <section className="min-h-screen flex items-center justify-center px-4 py-20 gradient-hero">
+                <ResultCard data={resultData} onReset={handleReset} />
+              </section>
+            )}
+
+            {appState !== "checking" && (
+              <>
+                <Leaderboard />
+                <Footer />
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
