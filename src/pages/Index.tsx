@@ -23,6 +23,7 @@ const getRankData = (score: number) => {
 
 const Index = () => {
   const [appState, setAppState] = useState<AppState>("intro");
+  const [currentUsername, setCurrentUsername] = useState("");
   const [resultData, setResultData] = useState<{
     username: string;
     score: number;
@@ -35,7 +36,8 @@ const Index = () => {
     setAppState("home");
   }, []);
 
-  const handleCheck = useCallback(() => {
+  const handleCheck = useCallback((username: string) => {
+    setCurrentUsername(username);
     setAppState("checking");
 
     // Simulate API call
@@ -44,7 +46,7 @@ const Index = () => {
       const rankData = getRankData(score);
       
       setResultData({
-        username: "demo_user",
+        username,
         score,
         rank: rankData.rank,
         badge: rankData.badge,
@@ -56,6 +58,7 @@ const Index = () => {
 
   const handleReset = useCallback(() => {
     setResultData(null);
+    setCurrentUsername("");
     setAppState("home");
   }, []);
 
@@ -80,12 +83,14 @@ const Index = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
             {appState === "home" && <HeroSection onCheckClick={handleCheck} />}
 
             {appState === "result" && resultData && (
-              <section className="min-h-screen flex items-center justify-center px-4 py-20 gradient-hero">
+              <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-background relative">
+                {/* Red gradient */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none" />
                 <ResultCard data={resultData} onReset={handleReset} />
               </section>
             )}

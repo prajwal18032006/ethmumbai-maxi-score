@@ -18,10 +18,8 @@ interface ResultCardProps {
 
 const ResultCard = ({ data, onReset }: ResultCardProps) => {
   useEffect(() => {
-    // Fire confetti on mount
-    const end = Date.now() + 2000;
-
-    const colors = ["#E33F3F", "#FF6B6B", "#FFFFFF"];
+    const end = Date.now() + 1500;
+    const colors = ["#E10600", "#FFFFFF", "#FFD700"];
 
     (function frame() {
       confetti({
@@ -51,127 +49,59 @@ const ResultCard = ({ data, onReset }: ResultCardProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5, y: 50 }}
+      initial={{ opacity: 0, scale: 0.8, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ 
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-      }}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
       className="relative"
     >
-      {/* Glow effect behind card */}
       <motion.div
-        animate={{ 
-          opacity: [0.3, 0.6, 0.3],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute inset-0 -m-4 bg-primary/20 blur-3xl rounded-3xl"
+        animate={{ opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute inset-0 -m-6 bg-primary/20 blur-3xl rounded-3xl"
       />
 
-      <div className="card-eth p-8 md:p-12 relative overflow-hidden max-w-lg mx-auto">
-        {/* Decorative corner accents */}
-        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/50 rounded-tl-xl" />
-        <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-primary/50 rounded-tr-xl" />
-        <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-primary/50 rounded-bl-xl" />
-        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-primary/50 rounded-br-xl" />
+      <div className="card-eth p-8 md:p-10 relative overflow-hidden max-w-md mx-auto glow-red">
+        <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-primary rounded-tl-2xl" />
+        <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-primary rounded-tr-2xl" />
+        <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-primary rounded-bl-2xl" />
+        <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-primary rounded-br-2xl" />
 
-        {/* Username */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-center mb-6"
-        >
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-center mb-6">
           <p className="text-muted-foreground font-body text-sm mb-1">Results for</p>
-          <p className="font-display text-2xl text-foreground">@{data.username}</p>
+          <p className="font-display text-2xl font-bold text-foreground">@{data.username}</p>
         </motion.div>
 
-        {/* Score */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, type: "spring" }}
-          className="text-center mb-8"
-        >
-          <div className="relative inline-block">
-            <motion.span
-              className="font-display text-7xl md:text-8xl font-bold text-primary text-glow-intense"
-              animate={{ 
-                textShadow: [
-                  "0 0 20px hsl(0 72% 57% / 0.8)",
-                  "0 0 40px hsl(0 72% 57% / 1)",
-                  "0 0 20px hsl(0 72% 57% / 0.8)",
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              {data.score}
-            </motion.span>
-            <span className="font-display text-2xl text-muted-foreground ml-2">/100</span>
+        <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, type: "spring" }} className="text-center mb-6">
+          <span className="font-display text-7xl md:text-8xl font-black text-primary">{data.score}</span>
+          <span className="font-display text-2xl text-muted-foreground ml-2">/100</span>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-center mb-6">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border border-primary/30">
+            <span className="text-3xl">{data.badge}</span>
+            <span className="font-display text-xl font-bold text-primary">{data.rank}</span>
           </div>
         </motion.div>
 
-        {/* Rank Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="text-center mb-6"
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/20 border border-primary/40"
-          >
-            <span className="text-3xl">{data.badge}</span>
-            <span className="font-display text-xl text-primary">{data.rank}</span>
-          </motion.div>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="flex justify-center gap-8 mb-8 text-center"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="flex justify-center gap-8 mb-8 text-center">
           <div>
-            <p className="font-display text-2xl text-foreground">{data.tweetCount}</p>
+            <p className="font-display text-2xl font-bold text-foreground">{data.tweetCount}</p>
             <p className="text-sm text-muted-foreground">Tweets</p>
           </div>
           <div className="w-px bg-border" />
           <div>
-            <p className="font-display text-2xl text-foreground">🔥</p>
+            <p className="text-2xl">🔥</p>
             <p className="text-sm text-muted-foreground">On Fire</p>
           </div>
         </motion.div>
 
-        {/* Share buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="space-y-3"
-        >
-          <motion.a
-            href={twitterUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center gap-2 w-full py-4 rounded-lg neon-button"
-          >
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="space-y-3">
+          <motion.a href={twitterUrl} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex items-center justify-center gap-2 w-full py-4 btn-eth-primary">
             <Twitter size={20} />
             <span>Share on X</span>
           </motion.a>
 
-          <motion.button
-            onClick={onReset}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full py-3 rounded-lg bg-secondary border border-primary/30 text-foreground font-display transition-all hover:bg-secondary/80"
-          >
+          <motion.button onClick={onReset} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-3 rounded-full bg-muted text-foreground font-semibold transition-colors hover:bg-muted/80">
             Check Another
           </motion.button>
         </motion.div>
