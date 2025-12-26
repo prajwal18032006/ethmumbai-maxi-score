@@ -1,54 +1,63 @@
-import { motion } from "framer-motion";
-
 interface BusIconProps {
   size?: number;
   className?: string;
 }
 
-const BusIcon = ({ size = 60, className = "" }: BusIconProps) => {
+const BusIcon = ({ size = 100, className = "" }: BusIconProps) => {
+  const scale = size / 100;
+  
   return (
     <svg
       width={size}
-      height={size * 0.7}
-      viewBox="0 0 100 70"
+      height={size * 0.65}
+      viewBox="0 0 100 65"
       className={className}
       fill="none"
     >
-      {/* Bus body */}
-      <rect x="5" y="15" width="90" height="40" rx="5" fill="hsl(1 100% 44%)" />
+      {/* Bus body - main */}
+      <rect x="5" y="10" width="90" height="42" rx="4" fill="#E10600" />
       
-      {/* Windows row 1 */}
-      <rect x="12" y="20" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="28" y="20" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="44" y="20" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="60" y="20" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="76" y="20" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
+      {/* Top deck windows */}
+      <rect x="10" y="14" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="23" y="14" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="36" y="14" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="49" y="14" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="62" y="14" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="75" y="14" width="10" height="10" rx="1" fill="#87CEEB" />
       
-      {/* Windows row 2 */}
-      <rect x="12" y="36" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="28" y="36" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="44" y="36" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="60" y="36" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
-      <rect x="76" y="36" width="12" height="12" rx="2" fill="hsl(200 80% 80%)" />
+      {/* Bottom deck windows */}
+      <rect x="10" y="30" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="23" y="30" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="36" y="30" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="49" y="30" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="62" y="30" width="10" height="10" rx="1" fill="#87CEEB" />
+      <rect x="75" y="30" width="10" height="10" rx="1" fill="#87CEEB" />
       
       {/* Green stripe */}
-      <rect x="5" y="50" width="90" height="5" fill="hsl(140 60% 40%)" />
+      <rect x="5" y="44" width="90" height="4" fill="#228B22" />
       
       {/* Yellow stripe */}
-      <rect x="5" y="53" width="90" height="2" fill="hsl(48 100% 50%)" />
+      <rect x="5" y="48" width="90" height="2" fill="#FFC400" />
+      
+      {/* Roof */}
+      <rect x="5" y="7" width="90" height="4" rx="2" fill="#C70000" />
       
       {/* Wheels */}
-      <circle cx="25" cy="58" r="8" fill="hsl(0 0% 20%)" />
-      <circle cx="25" cy="58" r="4" fill="hsl(0 0% 40%)" />
-      <circle cx="75" cy="58" r="8" fill="hsl(0 0% 20%)" />
-      <circle cx="75" cy="58" r="4" fill="hsl(0 0% 40%)" />
+      <circle cx="22" cy="54" r="8" fill="#1A1A1A" />
+      <circle cx="22" cy="54" r="4" fill="#404040" />
+      <circle cx="78" cy="54" r="8" fill="#1A1A1A" />
+      <circle cx="78" cy="54" r="4" fill="#404040" />
       
       {/* Front of bus */}
-      <rect x="88" y="35" width="7" height="15" rx="2" fill="hsl(1 100% 35%)" />
+      <rect x="88" y="25" width="7" height="20" rx="2" fill="#C70000" />
+      <rect x="90" y="28" width="4" height="6" rx="1" fill="#87CEEB" />
       
       {/* ETHMumbai logo area */}
-      <rect x="8" y="8" width="25" height="8" rx="3" fill="hsl(0 0% 100%)" />
-      <text x="12" y="14" fontSize="5" fontWeight="bold" fill="hsl(1 100% 44%)">ETHMUMBAI</text>
+      <rect x="8" y="2" width="30" height="6" rx="2" fill="#FFFFFF" />
+      <text x="11" y="6.5" fontSize="4" fontWeight="bold" fill="#E10600">ETHMUMBAI</text>
+      
+      {/* Headlights */}
+      <circle cx="93" cy="40" r="2" fill="#FFC400" />
     </svg>
   );
 };

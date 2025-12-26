@@ -6,89 +6,81 @@
 
 @layer base {
   :root {
-    /* ETHMumbai Official Colors */
-    --background: 0 0% 0%;
+    /* ETHMumbai Official Colors - EXACT */
+    --background: 0 0% 4%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 5%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 5%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 100%;
 
-    /* ETHMumbai Red - #E10600 */
-    --primary: 1 100% 44%;
+    /* Primary Red: #E10600 */
+    --primary: 2 100% 44%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 8%;
+    /* Secondary Red: #C70000 */
+    --secondary: 0 100% 39%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 70%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 1 100% 35%;
+    --accent: 0 100% 39%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 100% 44%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 12%;
-    --ring: 1 100% 44%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 2 100% 44%;
 
     --radius: 0.75rem;
 
-    /* ETHMumbai Design Tokens */
-    --eth-red: 1 100% 44%;
-    --eth-red-light: 1 100% 55%;
-    --eth-red-dark: 1 100% 35%;
-    --eth-black: 0 0% 0%;
+    /* ETHMumbai Exact Tokens */
+    --eth-red: 2 100% 44%;
+    --eth-red-dark: 0 100% 39%;
+    --eth-black: 0 0% 4%;
     --eth-white: 0 0% 100%;
-    --eth-yellow: 48 100% 50%;
-
-    /* Gradients */
-    --gradient-eth-red: linear-gradient(180deg, hsl(1 100% 44%) 0%, hsl(1 100% 35%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 5%) 100%);
-
-    /* Shadows - subtle, not neon */
-    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.3);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
-    --shadow-red: 0 4px 30px hsl(1 100% 44% / 0.2);
+    --eth-yellow: 45 100% 50%;
+    --eth-asphalt: 0 0% 15%;
 
     /* Fonts */
     --font-display: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --sidebar-background: 0 0% 5%;
+    --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 1 100% 44%;
+    --sidebar-primary: 2 100% 44%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 1 100% 44%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 2 100% 44%;
   }
 
   .dark {
-    --background: 0 0% 0%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 100%;
-    --card: 0 0% 5%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 5%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 100%;
-    --primary: 1 100% 44%;
+    --primary: 2 100% 44%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 8%;
+    --secondary: 0 100% 39%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 1 100% 35%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 100% 39%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 100% 44%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 12%;
-    --ring: 1 100% 44%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 2 100% 44%;
   }
 }
 
@@ -116,83 +108,79 @@
     font-family: var(--font-body);
   }
 
-  /* ETHMumbai branded backgrounds */
+  /* Flat ETHMumbai backgrounds */
   .bg-eth-red {
-    background-color: hsl(var(--eth-red));
+    background-color: #E10600;
   }
 
-  .bg-eth-gradient {
-    background: var(--gradient-eth-red);
+  .bg-eth-red-dark {
+    background-color: #C70000;
   }
 
-  /* Card styles - flat, premium */
+  .bg-eth-black {
+    background-color: #0A0A0A;
+  }
+
+  /* Card styles - flat, no glow */
   .card-eth {
     @apply bg-card border border-border rounded-2xl;
-    box-shadow: var(--shadow-card);
   }
 
-  .card-eth-red {
-    @apply bg-primary/10 border border-primary/30 rounded-2xl;
-    box-shadow: var(--shadow-red);
-  }
-
-  /* Button styles */
+  /* Button styles - flat */
   .btn-eth-primary {
-    @apply bg-primary text-primary-foreground font-semibold rounded-full;
-    @apply transition-all duration-200 ease-out;
-    @apply hover:bg-primary/90 active:scale-[0.98];
+    @apply bg-primary text-primary-foreground font-bold rounded-full;
+    @apply transition-all duration-150 ease-out;
+    @apply hover:opacity-90 active:scale-[0.98];
   }
 
   .btn-eth-outline {
-    @apply bg-transparent border-2 border-primary text-primary font-semibold rounded-full;
-    @apply transition-all duration-200 ease-out;
-    @apply hover:bg-primary hover:text-primary-foreground active:scale-[0.98];
+    @apply bg-transparent border-2 border-foreground text-foreground font-bold rounded-full;
+    @apply transition-all duration-150 ease-out;
+    @apply hover:bg-foreground hover:text-primary active:scale-[0.98];
   }
 
-  /* Input styles */
+  .btn-eth-white {
+    @apply bg-foreground text-primary font-bold rounded-full;
+    @apply transition-all duration-150 ease-out;
+    @apply hover:opacity-90 active:scale-[0.98];
+  }
+
+  /* Input styles - flat */
   .input-eth {
-    @apply bg-secondary border border-border text-foreground rounded-xl;
-    @apply transition-all duration-200;
-    @apply focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+    @apply bg-input border border-border text-foreground rounded-xl;
+    @apply transition-all duration-150;
+    @apply focus:border-primary focus:outline-none;
   }
 
-  /* Road divider */
-  .road-divider {
+  /* Road styles */
+  .road {
+    background-color: hsl(var(--eth-asphalt));
+  }
+
+  .road-line {
     background: repeating-linear-gradient(
       90deg,
-      hsl(48 100% 50%) 0px,
-      hsl(48 100% 50%) 40px,
-      transparent 40px,
-      transparent 60px
+      #FFC400 0px,
+      #FFC400 60px,
+      transparent 60px,
+      transparent 100px
     );
-    height: 4px;
+    height: 6px;
   }
 
-  /* Soft glow effect */
-  .glow-red {
-    box-shadow: 0 0 40px hsl(1 100% 44% / 0.3);
+  /* Subtle shadow for cards */
+  .shadow-eth {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 }
 
 @layer utilities {
-  .animate-float {
-    animation: float 4s ease-in-out infinite;
-  }
-
-  .animate-spin-slow {
-    animation: spin 6s linear infinite;
-  }
-
   .animate-bus-idle {
-    animation: bus-idle 2s ease-in-out infinite;
+    animation: bus-idle 3s ease-in-out infinite;
   }
 
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out forwards;
-  }
-
-  .animate-fade-in-down {
-    animation: fade-in-down 0.6s ease-out forwards;
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
   }
 
   .animate-slide-up {
@@ -200,53 +188,28 @@
   }
 }
 
-@keyframes float {
+@keyframes bus-idle {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-4px);
   }
 }
 
-@keyframes bus-idle {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-2px) rotate(0.5deg);
-  }
-  75% {
-    transform: translateY(-2px) rotate(-0.5deg);
-  }
-}
-
-@keyframes fade-in-up {
+@keyframes fade-in {
   0% {
     opacity: 0;
-    transform: translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
 @keyframes slide-up {
   0% {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
   100% {
     opacity: 1;
