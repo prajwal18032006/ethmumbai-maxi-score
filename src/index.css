@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,7 @@
 
 @layer base {
   :root {
+    /* ETHMumbai Official Colors */
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
@@ -15,56 +16,57 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 0 72% 57%;
+    /* ETHMumbai Red - #E10600 */
+    --primary: 1 100% 44%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 10%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 0 72% 45%;
+    --accent: 1 100% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 72% 30%;
-    --input: 0 0% 15%;
-    --ring: 0 72% 57%;
+    --border: 0 0% 20%;
+    --input: 0 0% 12%;
+    --ring: 1 100% 44%;
 
     --radius: 0.75rem;
 
-    /* Custom ETHMumbai tokens */
-    --eth-red: 0 72% 57%;
-    --eth-red-glow: 0 72% 57%;
-    --eth-dark-red: 0 72% 25%;
+    /* ETHMumbai Design Tokens */
+    --eth-red: 1 100% 44%;
+    --eth-red-light: 1 100% 55%;
+    --eth-red-dark: 1 100% 35%;
     --eth-black: 0 0% 0%;
-    --eth-deep-black: 0 0% 3%;
+    --eth-white: 0 0% 100%;
+    --eth-yellow: 48 100% 50%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%) 0%, hsl(0 72% 15%) 50%, hsl(0 0% 0%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 3%) 100%);
-    --gradient-glow: radial-gradient(circle, hsl(0 72% 57% / 0.3) 0%, transparent 70%);
+    --gradient-eth-red: linear-gradient(180deg, hsl(1 100% 44%) 0%, hsl(1 100% 35%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 5%) 100%);
 
-    /* Shadows */
-    --shadow-neon: 0 0 20px hsl(0 72% 57% / 0.5), 0 0 40px hsl(0 72% 57% / 0.3), 0 0 60px hsl(0 72% 57% / 0.1);
-    --shadow-neon-intense: 0 0 30px hsl(0 72% 57% / 0.8), 0 0 60px hsl(0 72% 57% / 0.5), 0 0 90px hsl(0 72% 57% / 0.3);
-    --shadow-card: 0 4px 30px hsl(0 0% 0% / 0.5);
+    /* Shadows - subtle, not neon */
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --shadow-red: 0 4px 30px hsl(1 100% 44% / 0.2);
 
     /* Fonts */
-    --font-display: 'Orbitron', sans-serif;
+    --font-display: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 0 72% 57%;
+    --sidebar-primary: 1 100% 44%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 72% 30%;
-    --sidebar-ring: 0 72% 57%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 1 100% 44%;
   }
 
   .dark {
@@ -74,19 +76,19 @@
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 72% 57%;
+    --primary: 1 100% 44%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 72% 45%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 1 100% 35%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 72% 30%;
-    --input: 0 0% 15%;
-    --ring: 0 72% 57%;
+    --border: 0 0% 20%;
+    --input: 0 0% 12%;
+    --ring: 1 100% 44%;
   }
 }
 
@@ -96,7 +98,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
 
@@ -114,93 +116,87 @@
     font-family: var(--font-body);
   }
 
-  .text-glow {
-    text-shadow: 0 0 10px hsl(var(--eth-red) / 0.8), 
-                 0 0 20px hsl(var(--eth-red) / 0.6), 
-                 0 0 30px hsl(var(--eth-red) / 0.4);
+  /* ETHMumbai branded backgrounds */
+  .bg-eth-red {
+    background-color: hsl(var(--eth-red));
   }
 
-  .text-glow-intense {
-    text-shadow: 0 0 15px hsl(var(--eth-red) / 1), 
-                 0 0 30px hsl(var(--eth-red) / 0.8), 
-                 0 0 45px hsl(var(--eth-red) / 0.6),
-                 0 0 60px hsl(var(--eth-red) / 0.4);
+  .bg-eth-gradient {
+    background: var(--gradient-eth-red);
   }
 
-  .box-glow {
-    box-shadow: var(--shadow-neon);
-  }
-
-  .box-glow-intense {
-    box-shadow: var(--shadow-neon-intense);
-  }
-
-  .gradient-hero {
-    background: var(--gradient-hero);
-  }
-
-  .gradient-card {
-    background: var(--gradient-card);
-  }
-
-  .border-glow {
-    border-color: hsl(var(--eth-red));
-    box-shadow: 0 0 15px hsl(var(--eth-red) / 0.3), inset 0 0 15px hsl(var(--eth-red) / 0.1);
-  }
-
-  .neon-button {
-    @apply relative overflow-hidden bg-primary text-primary-foreground font-display font-bold;
-    @apply transition-all duration-300 ease-out;
-    box-shadow: 0 0 20px hsl(var(--eth-red) / 0.5);
-  }
-
-  .neon-button:hover {
-    @apply scale-105;
-    box-shadow: 0 0 30px hsl(var(--eth-red) / 0.8), 0 0 60px hsl(var(--eth-red) / 0.4);
-  }
-
-  .neon-input {
-    @apply bg-secondary border-2 border-primary/30 text-foreground;
-    @apply transition-all duration-300;
-  }
-
-  .neon-input:focus {
-    @apply border-primary outline-none;
-    box-shadow: 0 0 20px hsl(var(--eth-red) / 0.4), inset 0 0 10px hsl(var(--eth-red) / 0.1);
-  }
-
+  /* Card styles - flat, premium */
   .card-eth {
-    @apply gradient-card border border-primary/30 rounded-xl;
-    box-shadow: var(--shadow-card), 0 0 30px hsl(var(--eth-red) / 0.1);
+    @apply bg-card border border-border rounded-2xl;
+    box-shadow: var(--shadow-card);
   }
 
-  .scan-line {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      hsl(var(--eth-red) / 0.1) 45%,
-      hsl(var(--eth-red) / 0.8) 50%,
-      hsl(var(--eth-red) / 0.1) 55%,
-      transparent 100%
+  .card-eth-red {
+    @apply bg-primary/10 border border-primary/30 rounded-2xl;
+    box-shadow: var(--shadow-red);
+  }
+
+  /* Button styles */
+  .btn-eth-primary {
+    @apply bg-primary text-primary-foreground font-semibold rounded-full;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-primary/90 active:scale-[0.98];
+  }
+
+  .btn-eth-outline {
+    @apply bg-transparent border-2 border-primary text-primary font-semibold rounded-full;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-primary hover:text-primary-foreground active:scale-[0.98];
+  }
+
+  /* Input styles */
+  .input-eth {
+    @apply bg-secondary border border-border text-foreground rounded-xl;
+    @apply transition-all duration-200;
+    @apply focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+  }
+
+  /* Road divider */
+  .road-divider {
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(48 100% 50%) 0px,
+      hsl(48 100% 50%) 40px,
+      transparent 40px,
+      transparent 60px
     );
+    height: 4px;
+  }
+
+  /* Soft glow effect */
+  .glow-red {
+    box-shadow: 0 0 40px hsl(1 100% 44% / 0.3);
   }
 }
 
 @layer utilities {
   .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: float 4s ease-in-out infinite;
   }
 
   .animate-spin-slow {
-    animation: spin 8s linear infinite;
+    animation: spin 6s linear infinite;
   }
 
-  .animate-scan {
-    animation: scan 1.5s ease-in-out infinite;
+  .animate-bus-idle {
+    animation: bus-idle 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
   }
 }
 
@@ -209,33 +205,60 @@
     transform: translateY(0px);
   }
   50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bus-idle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-2px) rotate(0.5deg);
+  }
+  75% {
+    transform: translateY(-2px) rotate(-0.5deg);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
     transform: translateY(-20px);
   }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 20px hsl(0 72% 57% / 0.5));
-  }
-  50% {
-    filter: drop-shadow(0 0 40px hsl(0 72% 57% / 0.8)) drop-shadow(0 0 60px hsl(0 72% 57% / 0.5));
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes scan {
+@keyframes slide-up {
   0% {
-    transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(40px);
   }
   100% {
-    transform: translateY(100%);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    background-position: 200% 0;
+  to {
+    transform: rotate(360deg);
   }
 }

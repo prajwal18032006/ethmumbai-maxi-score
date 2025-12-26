@@ -1,110 +1,85 @@
 import { motion } from "framer-motion";
 import EthereumIcon from "./EthereumIcon";
+import BusIcon from "./BusIcon";
 
 const CheckingAnimation = () => {
-  const phrases = [
-    "Scanning blockchain vibes...",
-    "Calculating MAXI power...",
-    "Analyzing ETHMumbai energy...",
-    "Measuring community love...",
-  ];
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-lg"
+      className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-background"
     >
-      {/* Scanner container */}
-      <div className="relative">
-        {/* Outer glow ring */}
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="absolute inset-0 -m-16 rounded-full bg-primary/20 blur-2xl"
-        />
+      {/* Red gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-primary/5" />
 
-        {/* Spinning ETH icon */}
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Spinning ETH icon - faster */}
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
           className="relative"
         >
-          <EthereumIcon size={100} />
-        </motion.div>
-
-        {/* Scan line overlay */}
-        <div className="absolute inset-0 -m-4 overflow-hidden rounded-full">
+          {/* Soft glow */}
           <motion.div
-            className="absolute inset-x-0 h-full scan-line"
-            animate={{ y: ["-100%", "100%"] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            animate={{ 
+              opacity: [0.2, 0.4, 0.2],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 1, repeat: Infinity }}
+            className="absolute inset-0 -m-6 rounded-full bg-primary/20 blur-xl"
           />
-        </div>
-
-        {/* Rotating ring */}
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 -m-8"
-        >
-          <svg className="w-full h-full" viewBox="0 0 200 200">
-            <circle
-              cx="100"
-              cy="100"
-              r="90"
-              fill="none"
-              stroke="hsl(0 72% 57%)"
-              strokeWidth="2"
-              strokeDasharray="20 10"
-              opacity="0.5"
-            />
-          </svg>
+          <EthereumIcon size={80} />
         </motion.div>
-      </div>
 
-      {/* Loading text */}
-      <motion.div className="mt-12 text-center">
+        {/* Progress text */}
         <motion.p
-          key={phrases[0]}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="font-display text-xl md:text-2xl text-primary text-glow"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="mt-8 font-display text-xl md:text-2xl text-foreground tracking-wide"
         >
-          {phrases.map((phrase, i) => (
-            <motion.span
-              key={phrase}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: i * 0.5, duration: 0.3 }}
-              className={i > 0 ? "hidden" : ""}
-              style={{ display: i === Math.floor((Date.now() / 500) % phrases.length) ? "inline" : "none" }}
-            >
-              {phrase}
-            </motion.span>
-          ))}
+          Calculating your ETHMumbai Maxi power…
         </motion.p>
 
-        {/* Progress dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {[0, 1, 2, 3].map((i) => (
-            <motion.div
-              key={i}
-              className="w-2 h-2 rounded-full bg-primary"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.3, 1, 0.3],
-              }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                delay: i * 0.2,
-              }}
-            />
-          ))}
-        </div>
-      </motion.div>
+        {/* Progress bar */}
+        <motion.div
+          className="mt-6 h-1.5 w-64 bg-muted rounded-full overflow-hidden"
+        >
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+            className="h-full w-1/2 bg-primary rounded-full"
+          />
+        </motion.div>
+
+        {/* Bus driving animation */}
+        <motion.div
+          initial={{ x: "-150%" }}
+          animate={{ x: "150%" }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          className="mt-12"
+        >
+          <BusIcon size={100} />
+        </motion.div>
+
+        {/* Journey text */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-4 font-body text-sm text-muted-foreground"
+        >
+          Your ETHMumbai Maxi journey is in progress…
+        </motion.p>
+      </div>
+
+      {/* Road at bottom */}
+      <div className="absolute bottom-20 left-0 right-0">
+        <div className="h-4 bg-muted/50" />
+        <div className="road-divider" />
+      </div>
     </motion.div>
   );
 };
