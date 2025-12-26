@@ -23,7 +23,6 @@ const getRankData = (score: number) => {
 
 const Index = () => {
   const [appState, setAppState] = useState<AppState>("intro");
-  const [currentUsername, setCurrentUsername] = useState("");
   const [resultData, setResultData] = useState<{
     username: string;
     score: number;
@@ -37,12 +36,10 @@ const Index = () => {
   }, []);
 
   const handleCheck = useCallback((username: string) => {
-    setCurrentUsername(username);
     setAppState("checking");
 
-    // Simulate API call
     setTimeout(() => {
-      const score = Math.floor(Math.random() * 60) + 40; // 40-100 range for demo
+      const score = Math.floor(Math.random() * 60) + 40;
       const rankData = getRankData(score);
       
       setResultData({
@@ -58,39 +55,33 @@ const Index = () => {
 
   const handleReset = useCallback(() => {
     setResultData(null);
-    setCurrentUsername("");
     setAppState("home");
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Intro Animation */}
       <AnimatePresence>
         {appState === "intro" && (
           <IntroAnimation onComplete={handleIntroComplete} />
         )}
       </AnimatePresence>
 
-      {/* Checking Animation */}
       <AnimatePresence>
         {appState === "checking" && <CheckingAnimation />}
       </AnimatePresence>
 
-      {/* Main Content */}
       <AnimatePresence mode="wait">
         {appState !== "intro" && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
           >
             {appState === "home" && <HeroSection onCheckClick={handleCheck} />}
 
             {appState === "result" && resultData && (
-              <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-background relative">
-                {/* Red gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none" />
+              <section className="min-h-screen flex items-center justify-center px-4 py-16 bg-eth-red">
                 <ResultCard data={resultData} onReset={handleReset} />
               </section>
             )}

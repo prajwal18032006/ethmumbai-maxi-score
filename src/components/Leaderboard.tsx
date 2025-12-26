@@ -20,22 +20,18 @@ const leaderboardData: LeaderboardEntry[] = [
 
 const Leaderboard = () => {
   return (
-    <section className="py-20 px-4 relative bg-background">
-      {/* Subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-
-      <div className="max-w-3xl mx-auto relative z-10">
+    <section className="py-16 px-4 bg-background">
+      <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-8"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-black text-foreground mb-3">
+          <h2 className="font-display text-2xl md:text-3xl font-black text-foreground mb-2">
             <span className="text-primary">Maxi</span> Leaderboard
           </h2>
-          <p className="text-muted-foreground font-body">
+          <p className="text-muted-foreground font-body text-sm">
             Top ETHMumbai enthusiasts
           </p>
         </motion.div>
@@ -44,33 +40,32 @@ const Leaderboard = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="card-eth overflow-hidden"
+          transition={{ delay: 0.1 }}
+          className="card-eth shadow-eth overflow-hidden"
         >
           {/* Header */}
-          <div className="grid grid-cols-4 gap-4 p-4 border-b border-border bg-muted/30">
-            <div className="font-display text-xs font-semibold text-muted-foreground uppercase tracking-wider">Rank</div>
-            <div className="font-display text-xs font-semibold text-muted-foreground uppercase tracking-wider">Username</div>
-            <div className="font-display text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Score</div>
-            <div className="font-display text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Badge</div>
+          <div className="grid grid-cols-4 gap-3 p-3 border-b border-border bg-muted/30">
+            <div className="font-display text-xs font-bold text-muted-foreground uppercase">Rank</div>
+            <div className="font-display text-xs font-bold text-muted-foreground uppercase">Username</div>
+            <div className="font-display text-xs font-bold text-muted-foreground uppercase text-center">Score</div>
+            <div className="font-display text-xs font-bold text-muted-foreground uppercase text-center">Badge</div>
           </div>
 
           {/* Entries */}
           {leaderboardData.map((entry, i) => (
             <motion.div
               key={entry.username}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className={`grid grid-cols-4 gap-4 p-4 border-b border-border/50 transition-colors hover:bg-muted/20 ${
+              transition={{ delay: i * 0.03 }}
+              className={`grid grid-cols-4 gap-3 p-3 border-b border-border/50 ${
                 entry.rank <= 3 ? "bg-primary/5" : ""
               }`}
             >
-              {/* Rank */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center">
                 <span
-                  className={`font-display text-lg font-bold ${
+                  className={`font-display text-base font-bold ${
                     entry.rank === 1
                       ? "text-yellow-500"
                       : entry.rank === 2
@@ -83,19 +78,13 @@ const Leaderboard = () => {
                   #{entry.rank}
                 </span>
               </div>
-
-              {/* Username */}
-              <div className="font-body text-foreground flex items-center">
+              <div className="font-body text-sm text-foreground flex items-center">
                 @{entry.username}
               </div>
-
-              {/* Score */}
-              <div className="font-display text-lg font-bold text-primary text-center flex items-center justify-center">
+              <div className="font-display text-base font-bold text-primary text-center flex items-center justify-center">
                 {entry.score}
               </div>
-
-              {/* Badge */}
-              <div className="text-center text-2xl flex items-center justify-center">
+              <div className="text-xl flex items-center justify-center">
                 {entry.badge}
               </div>
             </motion.div>
